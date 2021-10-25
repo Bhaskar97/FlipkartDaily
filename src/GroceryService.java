@@ -92,13 +92,14 @@ public class GroceryService {
                 Item item=itemMap.get(id);
                 if(item.getQuantity()>=quantity){
                     Item item1=new Item();
-                    item.setBrand(item.getBrand());
-                    item.setCategory(item.getCategory());
-                    item.setPrice(item.getPrice());
-                    item.setId(itemIdGenerator.getId());
-                    item.setQuantity(quantity);
+                    item1.setBrand(item.getBrand());
+                    item1.setCategory(item.getCategory());
+                    item1.setPrice(item.getPrice());
+                    item1.setId(itemIdGenerator.getId());
+                    item1.setQuantity(quantity);
                     user.getCart().add(item1);
-                    System.out.println("Item already added in the cart for user "+name+" ....");
+                    userMap.put(user.getId(),user);
+                    System.out.println("Item added in the cart for user "+name+" ....");
                 }
                 else{
                     System.out.println("The required quantity of teh item is not present currently ..");
@@ -121,9 +122,10 @@ public class GroceryService {
             List<Item> cart=user.getCart();
             Float total= Float.valueOf(0);
             for(Item item: cart){
-                Integer id=item.getId();
+                String key=item.getBrand()+"_"+item.getCategory();
+                Integer id=brandMap.get(key);
                 Item inventoryItem=itemMap.get(id);
-                if(inventoryItem.getPrice()!=item.getPrice()){
+                if(inventoryItem.getPrice()==item.getPrice()){
                     if(inventoryItem.getQuantity()>=item.getQuantity()){
                         inventoryItem.setQuantity(inventoryItem.getQuantity()-item.getQuantity());
                         total+=item.getPrice()*item.getQuantity();
