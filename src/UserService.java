@@ -10,7 +10,7 @@ public class UserService {
         return userService;
     }
 
-    public User addUser(String name,String address,Integer number){
+    public User addUser(String name,String address,Float number){
         return groceryService.addUser(name,address, number);
     }
 

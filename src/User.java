@@ -3,7 +3,7 @@ import java.util.*;
 public class User {
     private Integer id;
     private String name;
-    private Integer number;
+    private Float number;
     private List<Item> cart;
     private String address;
 
@@ -31,11 +31,11 @@ public class User {
         this.name = name;
     }
 
-    public Integer getNumber() {
+    public Float getNumber() {
         return number;
     }
 
-    public void setNumber(Integer number) {
+    public void setNumber(Float number) {
         this.number = number;
     }
 

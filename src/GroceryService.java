@@ -16,7 +16,7 @@ public class GroceryService {
         return groceryService;
     }
 
-    public User addUser(String name,String address,Integer number){
+    public User addUser(String name,String address,Float number){
         if(!nameMap.containsKey(name)) {
             User user=new User();
             user.setId(userIdGenerator.getId());
@@ -140,7 +140,13 @@ public class GroceryService {
                     throw new Exception("Your inventory has expired please add items again ...");
                 }
             }
-            System.out.println("Your total for the items in inventory is - "+total+" thank you for shopping with us ...");
+            if(user.getNumber()>=total) {
+                System.out.println("Your total for the items in inventory is - " + total + " thank you for shopping with us ...");
+                user.setNumber(user.getNumber()-total);
+            }
+            else{
+                System.out.println("Your wallet balance is low i.e - "+user.getNumber());
+            }
         }
         else{
             System.out.println("User not present for name - "+name);
